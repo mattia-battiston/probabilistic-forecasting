@@ -4,12 +4,18 @@ import com.pft.core.domain.InvalidDistributionException;
 import com.pft.core.domain.LeadTimeDistribution;
 import com.pft.core.domain.SimulationResult;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import static java.util.stream.IntStream.range;
 
+
+@Named
 public class LeadTimeSimulation {
 
     private final LeadTimeSimulationStep leadTimeSimulationStep;
 
+    @Inject
     public LeadTimeSimulation(LeadTimeSimulationStep leadTimeSimulationStep) {
         this.leadTimeSimulationStep = leadTimeSimulationStep;
     }

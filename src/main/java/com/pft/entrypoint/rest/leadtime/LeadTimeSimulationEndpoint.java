@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.inject.Inject;
+
 @RestController
 public class LeadTimeSimulationEndpoint {
 
@@ -17,6 +19,7 @@ public class LeadTimeSimulationEndpoint {
     private final GetDailyWip getDailyWip;
     private final GetLeadTimeDistribution getLeadTimeDistribution;
 
+    @Inject
     public LeadTimeSimulationEndpoint(final LeadTimeSimulation leadTimeSimulation, GetDailyWip getDailyWip, GetLeadTimeDistribution getLeadTimeDistribution) {
         this.leadTimeSimulation = leadTimeSimulation;
         this.getDailyWip = getDailyWip;

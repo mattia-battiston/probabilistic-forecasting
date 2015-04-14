@@ -4,6 +4,9 @@ import com.pft.core.domain.GetDailyWip;
 import com.pft.core.domain.GetLeadTimeDistribution;
 import com.pft.core.domain.LeadTimeDistribution;
 
+import javax.inject.Named;
+
+@Named
 public class Stub implements GetLeadTimeDistribution, GetDailyWip {
 
     private LeadTimeDistribution leadTimeDistribution;

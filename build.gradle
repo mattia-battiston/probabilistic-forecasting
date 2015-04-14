@@ -27,14 +27,15 @@ ext.libs = [
         ]
         , framework: [dependencies.create('org.springframework.boot:spring-boot-starter-web:' + springVersion)
                       , dependencies.create('org.springframework.boot:spring-boot-starter-actuator:' + springVersion)
-]
-
+        ]
+        , dependencieInject: ["javax.inject:javax.inject:1"]
 ]
 
 dependencies {
 
     testCompile libs.unit_tests
     compile libs.framework
+    compile libs.dependencieInject
 
 }
 
