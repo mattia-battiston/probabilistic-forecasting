@@ -2,19 +2,19 @@ package com.pft.core.domain;
 
 public class ValueProbability {
 
-    private Integer value;
-    private Integer probability;
+    private int value;
+    private int probability;
 
-    public ValueProbability(Integer value, Integer probability) {
+    public ValueProbability(int value, int probability) {
         this.value = value;
         this.probability = probability;
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 
-    public Integer getProbability() {
+    public int getProbability() {
         return probability;
     }
 
