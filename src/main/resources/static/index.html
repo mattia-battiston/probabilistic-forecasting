@@ -2,20 +2,31 @@
 <html lang="en-US" ng-app="pft">
 
 <head>
+    <style src="css/style.css"></style>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+
 </head>
 
 <body>
 
-<div ng-controller="leadTimeCtrl">
-    <form novalidate class="simple-form">
-        noOfStories: <input type="text" ng-model="request.noOfStories" /><br />
-        noOfSamples: <input type="text" ng-model="request.noOfSamples" /><br />
-        <input type="submit" ng-click="post(request)" value="Post" />
+
+<div class="container" ng-controller="leadTimeCtrl">
+    <h2>Please entire lead time details below</h2>
+    <p><strong># of Stories:</strong> This is the number of stories in your iteration</p>
+    <p><strong># of Samples:</strong> This is the number of samples in your story</p>
+
+    <form class="form-inline jumbotron" role="form">
+        <div class="form-group">
+            <input type="number" class="form-control" ng-model="request.noOfStories" placeholder="# of Stories">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" ng-model="request.noOfSamples" placeholder="# of Samples">
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="post(request)" >Submit</button>
     </form>
     <pre>form = {{request | json}}</pre>
     <pre>master = {{master | json}}</pre>
 </div>
-
 
 <script src="bower_components/jQuery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
