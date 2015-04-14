@@ -33,6 +33,6 @@ public class Stub implements GetLeadTimeDistribution, GetDailyWip {
 
     @Override
     public double getAverageDailyWIP() {
-        return 4.3;
+        return 2.6;
     }
 }
