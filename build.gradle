@@ -38,6 +38,21 @@ dependencies {
 
 }
 
+buildscript {
+    repositories {
+        maven {
+            url "http://repo.sns.sky.com:8081/artifactory/libs-releases"
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE'
+    }
+}
+
+apply plugin: 'spring-boot'
+
 test {
     testLogging {
         events "passed", "skipped", "failed"
