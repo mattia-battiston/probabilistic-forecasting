@@ -1,5 +1,6 @@
 # Probabilistic Forecasting Tool
 Forecast how long a bunch of stories are going to take, based on the team lead time distribution
+>*Created for the Sky Network Services Hack day*
 
 ## Resources
 - Troy Magennis
