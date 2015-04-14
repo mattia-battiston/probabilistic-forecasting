@@ -18,4 +18,11 @@ public class ValueProbability {
         return probabilityPercentage;
     }
 
+    @Override
+    public String toString() {
+        return "ValueProbability{" +
+                "days=" + days +
+                ", probabilityPercentage=" + probabilityPercentage +
+                '}';
+    }
 }

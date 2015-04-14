@@ -2,13 +2,14 @@ package com.pft.core.domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class SimulationResult {
 
+    public static final int NUMBER_OF_DAYS_TO_GROUP = 5;
     private Collection<Double> allResults = new ArrayList<>();
     private List<ValueProbability> resultProbabilities = new ArrayList<>();
 
@@ -25,25 +26,18 @@ public class SimulationResult {
     }
 
     public void calculateResultProbabilities() {
-        Map<Double, Long> individualResults = allResults.stream().collect(Collectors.groupingBy(o -> o, Collectors.counting()));
-
-        Map<Integer, Long> groupedResults = new HashMap<>();
-
-        for (Map.Entry<Double, Long> individualResult : individualResults.entrySet()) {
-            Double days = individualResult.getKey();
-            Long numberOfOccurrences = individualResult.getValue();
-
-            Integer bucket = (int)(days - (days%5 )) + 5;
-            if(groupedResults.containsKey(bucket)) {
-                Long existingOccurences = groupedResults.get(bucket);
-                Long newOccurrences = existingOccurences + numberOfOccurrences;
-                groupedResults.put(bucket, newOccurrences);
-            } else {
-                groupedResults.put(bucket, numberOfOccurrences);
-            }
-        }
-
+        Map<Integer, Long> groupedResults = allResults.stream().collect(Collectors.groupingBy(numberOfDaysInclusive(NUMBER_OF_DAYS_TO_GROUP), Collectors.counting()));
         convertToProbabilities(groupedResults);
+    }
+
+    private Function<Double, Integer> numberOfDaysInclusive(int numberOfDaysToGroup) {
+        return days -> {
+            if (days % 5 == 0) {
+                return days.intValue();
+            }
+
+            return (int) (days - (days % numberOfDaysToGroup)) + numberOfDaysToGroup;
+        };
     }
 
     private void convertToProbabilities(Map<Integer, Long> resultOccurrences) {
