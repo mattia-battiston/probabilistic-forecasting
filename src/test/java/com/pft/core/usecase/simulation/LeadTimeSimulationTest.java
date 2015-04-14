@@ -62,16 +62,16 @@ public class LeadTimeSimulationTest {
         assertThat(simulationResult.getAllResults()).containsExactly(1.0, 3.0, 5.0, 7.0, 9.0);
     }
 
-//    @Test
-//    public void calculatesResultProbabilities() throws Exception {
-//        int numberOfSamples = 5;
-//        givenTheSimulationStepsWillGenerateResults(1.0, 3.0, 5.0, 7.0, 9.0);
-//
-//        SimulationResult simulationResult = simulation.forecast(LEAD_TIME_DISTRIBUTION, AVG_DAILY_WIP, NUMBER_OF_STORIES, numberOfSamples);
-//
-//        assertThat(simulationResult.getResultProbabilities()).extracting(o -> o.getProbabilityPercentage()).containsExactly(20,20,20,20,20);
-//        assertThat(simulationResult.getResultProbabilities()).extracting(o -> o.getDays()).containsExactly(1,3,5,7,9);
-//    }
+    @Test
+    public void calculatesResultProbabilities() throws Exception {
+        int numberOfSamples = 5;
+        givenTheSimulationStepsWillGenerateResults(1.0, 3.0, 5.0, 7.0, 9.0);
+
+        SimulationResult simulationResult = simulation.forecast(LEAD_TIME_DISTRIBUTION, AVG_DAILY_WIP, NUMBER_OF_STORIES, numberOfSamples);
+
+        assertThat(simulationResult.getResultProbabilities()).extracting(o -> o.getProbabilityPercentage()).containsOnly(60,40);
+        assertThat(simulationResult.getResultProbabilities()).extracting(o -> o.getDays()).containsOnly(5,10);
+    }
 
     private void givenTheSimulationStepsWillGenerateResults(double... results) {
         OngoingStubbing<Double> ongoingStubbing = when(leadTimeSimulationStep.simulate(LEAD_TIME_DISTRIBUTION, AVG_DAILY_WIP, NUMBER_OF_STORIES));
