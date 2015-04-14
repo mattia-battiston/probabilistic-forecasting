@@ -35,6 +35,8 @@ public class LeadTimeSimulation {
             simulationResult::record
         );
 
+        simulationResult.calculateResultProbabilities();
+
         return simulationResult;
     }
 
