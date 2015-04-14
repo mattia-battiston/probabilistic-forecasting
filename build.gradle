@@ -15,10 +15,24 @@ repositories {
     mavenCentral()
 }
 
+ext.libs = [
+    unit_tests: [
+            "junit:junit:4.12",
+            "org.mockito:mockito-all:1.10.19",
+            "org.assertj:assertj-core:3.0.0"
+    ]
+]
+
 dependencies {
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:1.10.19'
-    testCompile 'org.assertj:assertj-core:3.0.0'
+
+    testCompile libs.unit_tests
+
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 task wrapper(type: Wrapper) {
