@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 public class SimulationResult {
 
     public static final int NUMBER_OF_DAYS_TO_GROUP = 5;
@@ -27,7 +29,19 @@ public class SimulationResult {
 
     public void calculateResultProbabilities() {
         Map<Integer, Long> groupedResults = allResults.stream().collect(Collectors.groupingBy(numberOfDaysInclusive(NUMBER_OF_DAYS_TO_GROUP), Collectors.counting()));
-        convertToProbabilities(groupedResults);
+
+        Long totalNumberOfSamples = getTotalNumberOfSamples(groupedResults);
+
+        resultProbabilities = convertToProbabilities(groupedResults, totalNumberOfSamples);
+    }
+
+    private List<ValueProbability> convertToProbabilities(Map<Integer, Long> groupedResults, Long totalNumberOfSamples) {
+        return groupedResults.entrySet().stream().map(entry -> {
+            Integer result = entry.getKey();
+            double occurrencies = entry.getValue();
+            int probability = (int) Math.round(occurrencies / totalNumberOfSamples * 100);
+            return new ValueProbability(result, probability);
+        }).collect(toList());
     }
 
     private Function<Double, Integer> numberOfDaysInclusive(int numberOfDaysToGroup) {
@@ -38,16 +52,6 @@ public class SimulationResult {
 
             return (int) (days - (days % numberOfDaysToGroup)) + numberOfDaysToGroup;
         };
-    }
-
-    private void convertToProbabilities(Map<Integer, Long> resultOccurrences) {
-        double numberOfSamples = getTotalNumberOfSamples(resultOccurrences);
-        for (Map.Entry<Integer, Long> resultOccurency : resultOccurrences.entrySet()) {
-            Integer result = resultOccurency.getKey();
-            double occurrencies = resultOccurency.getValue();
-            int probability = (int) Math.round(occurrencies / numberOfSamples * 100);
-            resultProbabilities.add(new ValueProbability(result, probability));
-        }
     }
 
     private Long getTotalNumberOfSamples(Map<Integer, Long> groupedResults) {
