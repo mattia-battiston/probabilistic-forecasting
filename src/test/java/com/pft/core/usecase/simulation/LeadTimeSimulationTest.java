@@ -55,17 +55,17 @@ public class LeadTimeSimulationTest {
     @Test
     public void recordsAllResultsAndReturnsThem() throws Exception {
         int numberOfSamples = 5;
-        givenTheSimulationStepsWillGenerateResults(1, 3, 5, 7, 9);
+        givenTheSimulationStepsWillGenerateResults(1.0, 3.0, 5.0, 7.0, 9.0);
 
         SimulationResult simulationResult = simulation.forecast(LEAD_TIME_DISTRIBUTION, AVG_DAILY_WIP, NUMBER_OF_STORIES, numberOfSamples);
 
-        assertThat(simulationResult.getAllResults()).containsExactly(1, 3, 5, 7, 9);
+        assertThat(simulationResult.getAllResults()).containsExactly(1.0, 3.0, 5.0, 7.0, 9.0);
     }
 
-    private void givenTheSimulationStepsWillGenerateResults(int... results) {
-        OngoingStubbing<Integer> ongoingStubbing = when(leadTimeSimulationStep.simulate(LEAD_TIME_DISTRIBUTION, AVG_DAILY_WIP, NUMBER_OF_STORIES));
+    private void givenTheSimulationStepsWillGenerateResults(double... results) {
+        OngoingStubbing<Double> ongoingStubbing = when(leadTimeSimulationStep.simulate(LEAD_TIME_DISTRIBUTION, AVG_DAILY_WIP, NUMBER_OF_STORIES));
 
-        for (int result : results) {
+        for (double result : results) {
             ongoingStubbing = ongoingStubbing.thenReturn(result);
         }
     }

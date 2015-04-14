@@ -5,13 +5,13 @@ import java.util.Collection;
 
 public class SimulationResult {
 
-    private Collection<Integer> allResults = new ArrayList<>();
+    private Collection<Double> allResults = new ArrayList<>();
 
-    public Collection<Integer> getAllResults() {
+    public Collection<Double> getAllResults() {
         return allResults;
     }
 
-    public void record(int result) {
+    public void record(double result) {
         allResults.add(result);
     }
 }

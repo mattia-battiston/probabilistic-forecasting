@@ -26,6 +26,6 @@ public class LeadTimeDistributionTest {
     }
 
     private Predicate<ValueProbability> containsProbability(int value, int probability) {
-        return (valueProbability) -> valueProbability.getProbability() == probability && valueProbability.getValue() == value;
+        return (valueProbability) -> valueProbability.getProbabilityPercentage() == probability && valueProbability.getDays() == value;
     }
 }

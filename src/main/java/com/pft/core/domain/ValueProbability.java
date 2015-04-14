@@ -2,20 +2,20 @@ package com.pft.core.domain;
 
 public class ValueProbability {
 
-    private int value;
-    private int probability;
+    private int days;
+    private int probabilityPercentage;
 
-    public ValueProbability(int value, int probability) {
-        this.value = value;
-        this.probability = probability;
+    public ValueProbability(int days, int probabilityPercentage) {
+        this.days = days;
+        this.probabilityPercentage = probabilityPercentage;
     }
 
-    public int getValue() {
-        return value;
+    public int getDays() {
+        return days;
     }
 
-    public int getProbability() {
-        return probability;
+    public int getProbabilityPercentage() {
+        return probabilityPercentage;
     }
 
 }

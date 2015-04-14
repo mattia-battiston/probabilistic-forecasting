@@ -21,7 +21,7 @@ public class LeadTimeSimulation {
     }
 
     public SimulationResult forecast(final LeadTimeDistribution leadTimeDistribution, final double averageDailyWIP, final int numberOfStories, final int numberOfSamples) {
-        int totalProbability = leadTimeDistribution.getValueProbabilities().mapToInt(vp -> vp.getProbability()).sum();
+        int totalProbability = leadTimeDistribution.getValueProbabilities().mapToInt(vp -> vp.getProbabilityPercentage()).sum();
 
         if (totalProbability != 100) {
             throw new InvalidDistributionException("Require probability to add up to 100% but instead got: " + totalProbability);
@@ -29,7 +29,7 @@ public class LeadTimeSimulation {
 
         SimulationResult simulationResult = new SimulationResult();
 
-        range(0, numberOfSamples).map(
+        range(0, numberOfSamples).mapToDouble(
             sampleNumber -> leadTimeSimulationStep.simulate(leadTimeDistribution, averageDailyWIP, numberOfStories)
         ).forEach(
             simulationResult::record

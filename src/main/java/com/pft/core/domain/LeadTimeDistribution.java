@@ -15,4 +15,9 @@ public class LeadTimeDistribution {
     public Stream<ValueProbability> getValueProbabilities() {
         return valueProbabilities.stream();
     }
+
+    // TODO
+    public int extractRandomLeadTime() {
+        return 0;
+    }
 }
