@@ -15,5 +15,4 @@ public class Application {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(Application.class);
         builder.run(args);
     }
-
 }
