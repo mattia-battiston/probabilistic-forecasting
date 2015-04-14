@@ -1,4 +1,4 @@
-package com.pft.core;
+package com.pft;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
