@@ -15,17 +15,26 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    springVersion = '1.1.6.RELEASE'
+}
+
 ext.libs = [
-    unit_tests: [
-            "junit:junit:4.12",
-            "org.mockito:mockito-all:1.10.19",
-            "org.assertj:assertj-core:3.0.0"
-    ]
+        unit_tests : [
+                "junit:junit:4.12",
+                "org.mockito:mockito-all:1.10.19",
+                "org.assertj:assertj-core:3.0.0"
+        ]
+        , framework: [dependencies.create('org.springframework.boot:spring-boot-starter-web:' + springVersion)
+                      , dependencies.create('org.springframework.boot:spring-boot-starter-actuator:' + springVersion)
+]
+
 ]
 
 dependencies {
 
     testCompile libs.unit_tests
+    compile libs.framework
 
 }
 
