@@ -11,6 +11,13 @@ angular.module('pft.controllers')
                 for (i=0; i < data.length; i++) {
                     sum  = sum + data[i].probabilityPercentage;
                     data[i].cumulate = sum;
+                    data[i].class = "danger";
+                    if(sum > 50){
+                        data[i].class =  "warning";
+                    }
+                    if(sum > 80) {
+                        data[i].class =  "success";
+                    }
                 }
                 $scope.responses= data;
 
