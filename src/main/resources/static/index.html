@@ -6,11 +6,11 @@
 
 <body>
 
-<div ng-controller="helloCtrl">
+<div ng-controller="leadTimeCtrl">
     <form novalidate class="simple-form">
         noOfStories: <input type="text" ng-model="request.noOfStories" /><br />
         noOfSamples: <input type="text" ng-model="request.noOfSamples" /><br />
-        <input type="submit" ng-click="update(request)" value="Save" />
+        <input type="submit" ng-click="post(request)" value="Post" />
     </form>
     <pre>form = {{request | json}}</pre>
     <pre>master = {{master | json}}</pre>
