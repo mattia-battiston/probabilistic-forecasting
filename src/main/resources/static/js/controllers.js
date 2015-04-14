@@ -1,14 +1,21 @@
 angular.module('pft.controllers')
-    .controller('leadTimeCtrl', function ($scope, $http) {
-
-        $scope.master = {};
+    .controller('leadTimeCtrl', function ($scope, $http, $filter) {
 
         $scope.post = function (request) {
-            $scope.master = angular.copy(request);
             $http.post("rest/leadtime", request).success(function (data) {
                 console.log("suc");
+                data = $filter('orderBy')(data, '-days', true)
 
-                console.log(data);
+                var sum = 0;
+
+                for (i=0; i < data.length; i++) {
+                    sum  = sum + data[i].probabilityPercentage;
+                    data[i].cumulate = sum;
+                }
+                $scope.responses= data;
+
+
+
 
             }).
                 error(function (data) {
@@ -17,7 +24,6 @@ angular.module('pft.controllers')
                     console.log(data);
                 });
         };
-
 
 
     });

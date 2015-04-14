@@ -12,7 +12,9 @@
 
 <div class="container" ng-controller="leadTimeCtrl">
     <h2>Please entire lead time details below</h2>
+
     <p><strong># of Stories:</strong> This is the number of stories in your iteration</p>
+
     <p><strong># of Samples:</strong> This is the number of samples in your story</p>
 
     <form class="form-inline jumbotron" role="form">
@@ -22,10 +24,31 @@
         <div class="form-group">
             <input type="number" class="form-control" ng-model="request.noOfSamples" placeholder="# of Samples">
         </div>
-        <button type="submit" class="btn btn-primary" ng-click="post(request)" >Submit</button>
+        <button type="submit" class="btn btn-primary" ng-click="post(request)">Submit</button>
     </form>
     <pre>form = {{request | json}}</pre>
-    <pre>master = {{master | json}}</pre>
+
+    <div >
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Days</th>
+                <th>Probability Percentage</th>
+                <th>Cumulative Percentage</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="response in responses">
+            <tr class="success">
+                <td>{{response.days}}</td>
+                <td>{{response.probabilityPercentage}}</td>
+                <td>{{response.cumulate}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
 </div>
 
 <script src="bower_components/jQuery/dist/jquery.min.js"></script>
