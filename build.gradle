@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
