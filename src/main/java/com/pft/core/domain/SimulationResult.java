@@ -30,9 +30,15 @@ public class SimulationResult {
     public void calculateResultProbabilities() {
         Map<Integer, Long> groupedResults = allResults.stream().collect(Collectors.groupingBy(numberOfDaysInclusive(NUMBER_OF_DAYS_TO_GROUP), Collectors.counting()));
 
+        System.out.println("groupedResults = " + groupedResults);
+
         Long totalNumberOfSamples = getTotalNumberOfSamples(groupedResults);
 
+        System.out.println("totalNumberOfSamples = " + totalNumberOfSamples);
+
         resultProbabilities = convertToProbabilities(groupedResults, totalNumberOfSamples);
+
+        System.out.println("resultProbabilities = " + resultProbabilities);
     }
 
     private List<ValueProbability> convertToProbabilities(Map<Integer, Long> groupedResults, Long totalNumberOfSamples) {

@@ -10,15 +10,20 @@ import static java.util.stream.IntStream.range;
 public class LeadTimeSimulationStep {
 
     public double simulate(LeadTimeDistribution leadTimeDistribution, double averageDailyWip, int numberOfStories) {
+        System.out.println("Before Random Lead Time");
+
         int totalLeadTime = range(0, numberOfStories).map(
                 storyNumber -> leadTimeDistribution.extractRandomLeadTime()
-        ).sum();
+        ).peek(System.out::println).sum();
 
         if (lessStoriesThanWIP(averageDailyWip, numberOfStories)) {
+            System.out.println("Simulate Step Result = " + totalLeadTime);
             return totalLeadTime;
         }
 
         double result = totalLeadTime / averageDailyWip;
+
+        System.out.println("Simulate Step Result = " + result);
 
         return result;
     }
