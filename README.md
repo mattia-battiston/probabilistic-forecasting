@@ -2,6 +2,9 @@
 Forecast how long a bunch of stories are going to take, based on the team lead time distribution
 >*Created for the Sky Network Services Hack day*
 
+## Backlog & Progress
+You can track our efforts and future plans on our [trello board](https://trello.com/b/rVgsIQFm/probabilistic-forecasting-tool)
+
 ## Resources
 - Troy Magennis
   - [LKUK13: Cycle Time Analytics - Fast #NoEstimate Forecasting & Decision Making](https://www.youtube.com/watch?v=rNotEf40qUU)
